@@ -6,8 +6,8 @@
       "last_seen": "2026-06-16T10:04:31.884076"
     },
     "yellow": {
-      "status": "offline",
-      "last_seen": null
+      "status": "online",
+      "last_seen": "2026-06-16T11:15:42.711208"
     }
   },
   "messages": [
@@ -26,6 +26,14 @@
       "type": "message",
       "data": "你好黄区！蓝区通过 GitHub 中继向你问好！",
       "timestamp": "2026-06-16T10:04:31.884076"
+    },
+    {
+      "id": 3,
+      "from": "yellow",
+      "to": "blue",
+      "type": "message",
+      "data": "hello",
+      "timestamp": "2026-06-16T11:15:42.711234"
     }
   ]
 }
