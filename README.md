@@ -1,38 +1,42 @@
-# Zone Bridge - 蓝黄区跨网络 Agent 通信工具
+# Zone Bridge
 
-## 问题场景
+跨区通信工具，通过 GitHub 仓库做中继，绕过蓝区→黄区的 50KB 限制。
 
-两个网络环境：
-- **蓝区 (Blue Zone)**: 外部网络，无限制
-- **黄区 (Yellow Zone)**: 公司内部网络，通过 Web 代理/网关访问蓝区
+## 文件说明
 
-### 网络约束
+- `client.py` - 通信客户端（蓝区黄区都用同一个）
+- `config.json` - 配置文件（两边 zone 不同）
 
-| 方向 | 连通性 | 限制 |
-|------|--------|------|
-| 黄区 → 蓝区 | ✅ 无限制 | - |
-| 蓝区 → 黄区 | ⚠️ 受限 | 内容 < 50KB |
+## 使用方法
 
-## 项目目标
+### 黄区
 
-让蓝区和黄区能够互相访问各自的 Agent (A2A 或自定义协议)
+```bash
+git clone https://github.com/1152024415-crypto/zone-bridge-relay.git
+cd zone-bridge-relay
 
-## 实验计划
+# config.json 已经是 zone=yellow，直接用
+python client.py recv          # 读消息（不需要 token）
+python client.py status        # 查看状态
 
-### 实验 1: 黄区 → 蓝区
-- 在蓝区启动 HTTP server
-- 从黄区 curl 测试连通性
-
-### 实验 2: 蓝区 → 黄区  
-- 在黄区启动 HTTP server
-- 从蓝区 curl 测试连通性和 50KB 限制
-
-## 目录结构
-
+# 发消息需要 token，编辑 config.json 填上
+python client.py send blue "黄区收到！"
 ```
-zone-bridge/
-├── blue_server/      # 蓝区运行的服务
-├── yellow_server/    # 黄区运行的服务
-├── client/           # 测试客户端
-└── README.md
+
+### 蓝区
+
+```bash
+# 编辑 config.json，把 zone 改成 "blue"
+# 填上 token
+
+python client.py recv
+python client.py send yellow "蓝区发消息"
 ```
+
+## 命令
+
+- `recv` - 接收消息（不需要 token）
+- `send <zone> <msg>` - 发送消息（需要 token）
+- `status` - 查看状态（不需要 token）
+- `ping` - 发送 ping（需要 token）
+- `listen` - 持续监听（不需要 token）
