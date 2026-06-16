@@ -3,7 +3,7 @@
   "zones": {
     "blue": {
       "status": "online",
-      "last_seen": "2026-06-16T10:03:11.330596"
+      "last_seen": "2026-06-16T10:04:31.884076"
     },
     "yellow": {
       "status": "offline",
@@ -18,6 +18,14 @@
       "type": "ping",
       "data": "蓝区你好！这是一条测试消息 from blue zone",
       "timestamp": "2026-06-16T10:03:11.330596"
+    },
+    {
+      "id": 2,
+      "from": "blue",
+      "to": "yellow",
+      "type": "message",
+      "data": "你好黄区！蓝区通过 GitHub 中继向你问好！",
+      "timestamp": "2026-06-16T10:04:31.884076"
     }
   ]
 }
