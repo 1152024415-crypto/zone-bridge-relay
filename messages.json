@@ -1,0 +1,14 @@
+{
+  "protocol": "zone-bridge-v1",
+  "zones": {
+    "blue": {
+      "status": "online",
+      "last_seen": null
+    },
+    "yellow": {
+      "status": "offline",
+      "last_seen": null
+    }
+  },
+  "messages": []
+}
